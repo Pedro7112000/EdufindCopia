@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Recuperar contraseña | EduFind</title>
+	<!-- core:css -->
+	<link rel="stylesheet" href="/vendors/core/core.css" type="text/css">
+	<!-- endinject -->
+	<!-- plugin css for this page -->
+	<link rel="stylesheet" href="/vendors/sweetalert2/sweetalert2.min.css">
+	<!-- end plugin css for this page -->
+	<!-- inject:css -->
+	<link rel="stylesheet" href="/fonts/feather-font/css/iconfont.css" type="text/css">
+	<link rel="stylesheet" href="/vendors/flag-icon-css/css/flag-icon.min.css" type="text/css">
+	<!-- endinject -->
+	<!-- Layout styles -->
+	<link rel="stylesheet" href="/css/demo_5/style.css" type="text/css">
+	<!-- End layout styles -->
+	<link rel="shortcut icon" href="/images/favicon.png" />
+</head>
+
+<body>
+	<div class="main-wrapper">
+		<div class="page-wrapper full-page">
+			<div class="page-content d-flex align-items-center justify-content-center">
+
+				<div class="row w-100 mx-0 auth-page">
+					<div class="col-md-8 col-xl-6 mx-auto">
+						<div class="card">
+							<div class="row">
+								<div class="col-md-4 pr-md-0">
+									<div class="auth-left-wrapper">
+									</div>
+								</div>
+								<div class="col-md-8 pl-md-0">
+									<div class="auth-form-wrapper px-4 py-5">
+										<a href="#" class="noble-ui-logo d-block mb-2">Edu<span>Find</span></a>
+										<h6 class="text-muted font-weight-normal mb-2">
+											¿Olvidaste tu contraseña?</h6>
+										<h6 class="text-muted font-weight-normal mb-4">
+											Déjanos tu correo, ¡nos comunicaremos contigo!</h6>
+										<form class="forms-sample" method="post" th:object="${recovery}" th:action="@{/recuperar}">
+											<div class="form-group">
+												<label for="inputCorreoRecuperar">Correo electrónico</label>
+												<input type="email" class="form-control" id="inputCorreoRecuperar" required
+													placeholder="Correo electrónico" name="username" th:field="*{email}">
+												<div class="error mt-2 text-danger" th:if="${msg}" th:text="${msg}"></div>
+											</div>
+
+											<div class="mt-3">
+												<button type="submit"
+													class="btn btn-primary mr-2 mb-2 mb-md-0 text-white">Enviar</button>
+											</div>
+											<p class="d-block mt-4 text-muted">
+												<a href="/login" class="text-primary font-weight-bold">Regresar</a>
+											</p>
+											
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- core:js -->
+	<script src="/vendors/core/core.js"></script>
+	<!-- endinject -->
+	<!-- plugin js for this page -->
+	<script src="/vendors/sweetalert2/sweetalert2.min.js"></script>
+	<!-- end plugin js for this page -->
+	<!-- inject:js -->
+	<script src="/vendors/feather-icons/feather.min.js"></script>
+	<script src="/js/template.js"></script>
+	<!-- endinject -->
+	<!-- custom js for this page -->
+	<!-- end custom js for this page -->
+	
+	<script th:inline="javascript">	
+		$(function() {
+			var notification = /*[[${notification}]]*/
+			
+			'use strict'
+			
+			if (notification === 'Registro exitoso') {
+				Swal.fire({
+				  position: 'center',
+				  icon: 'success',
+				  title: notification,
+				  showConfirmButton: false,
+				  timer: 1500
+				})
+			}
+		})
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Bienvenido | EduFind</title>
+	<!-- core:css -->
+	<link rel="stylesheet" href="/vendors/core/core.css" type="text/css">
+	<!-- endinject -->
+	<!-- plugin css for this page -->
+	<link rel="stylesheet" href="/vendors/datatables.net-bs4/dataTables.bootstrap4.css" type="text/css">
+	
+	<link rel="stylesheet" href="/vendors/sweetalert2/sweetalert2.min.css">
+	<!-- end plugin css for this page -->
+	<!-- inject:css -->
+	<link rel="stylesheet" href="/fonts/feather-font/css/iconfont.css" type="text/css">
+	<link rel="stylesheet" href="/vendors/flag-icon-css/css/flag-icon.min.css" type="text/css">
+	<!-- endinject -->
+	<!-- Layout styles -->
+	<link rel="stylesheet" href="/css/demo_5/style.css" type="text/css">
+	<!-- End layout styles -->
+	<link rel="shortcut icon" href="/images/favicon.png" type="text/css">
+
+	<!-- Fix datatable -->
+	<link rel="stylesheet" href="/css/demo_5/custom.css" type="text/css">
+	
+	<link rel="stylesheet" href="/vendors/animatecss/animate.min.css" type="text/css">
+</head>
+
+<body>
+	<div class="main-wrapper">
+
+		<!-- partial:../../partials/_navbar.html -->
+		<div class="horizontal-menu">
+			<nav class="navbar top-navbar">
+				<div class="container">
+					<div class="navbar-content">
+						<a href="#" class="navbar-brand">
+							Edu<span>Find</span>
+						</a>
+
+						<ul class="navbar-nav">
+
+							<li class="nav-item">
+								<a href="/login" class="btn btn-primary">Iniciar sesión</a>
+							</li>
+
+						</ul>
+						<button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+							data-toggle="horizontal-menu-toggle">
+							<i data-feather="menu"></i>
+						</button>
+					</div>
+				</div>
+			</nav>
+			<nav class="bottom-navbar">
+				<div class="container">
+					<ul class="nav page-navigation d-flex justify-content-start active">
+						<li class="nav-item mr-4 active">
+							<a class="nav-link" href="/">
+								<i class="link-icon" data-feather="home"></i>
+								<span class="menu-title">Inicio</span>
+							</a>
+						</li>
+						<li class="nav-item mr-4">
+							<a href="/soy_centro" class="nav-link">
+								<i class="link-icon" data-feather="book"></i>
+								<span class="menu-title">Soy centro de capacitación</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<!-- partial -->
+
+		<div class="page-wrapper">
+
+			<div class="page-content">
+
+				<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+					<div>
+						<h4 class="mb-3 mb-md-0">¡Bienvenido a EduFind!</h4>
+					</div>
+				</div>
+				
+				<div class="row" id="welcomePanel">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-body">
+								<div id="content">
+									<div class="d-flex justify-content-between ml-5">
+										<div class="d-flex flex-column justify-content-center">
+											<h1 class="mb-4">Impulsa tu carrera profesional</h1>
+											<p class="h6">Encuentra la mejor oferta para el curso que necesitas</p>
+											<button id="btnVerCursos" class="btn btn-primary mt-3" style="width: 150px;">Ver cursos</button>
+										</div>
+										<div>
+											<img class="img-fluid" src="/images/background/img2.png" alt="welcome" height="500px">
+										</div>
+									</div>
+									
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row d-none animate__animated" id="tablePanel">
+					<div class="col-md-12 grid-margin stretch-card">
+						<div class="card">
+							<div class="card-header">
+								<h6 class="card-title mb-0 mt-1">Encuentra tu curso</h6>
+							</div>
+
+							<div class="card-body">
+
+								<div class="input-group col-xs-12 mb-4">
+									<input id="mySearchInput" type="text" class="form-control" placeholder="Escriba su curso aquí">
+								</div>
+
+								<div class="table-responsive">
+									<table id="dataTableExample" class="table">
+										<thead>
+											<tr>
+												<th>Nombre</th>
+												<th>Fecha de inicio</th>
+												<th>Horario</th>
+												<th>Duración</th>
+												<th>Enlace</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="course: ${courses}">
+												<td th:text="${course.name}">Aplicaciones web con Spring Boot</td>
+												<td th:text="${course.startDate}">05/05/2021</td>
+												<td th:text="${course.schedule}">DOM 09:00 - 12:00</td>
+												<td th:text="${course.duration} + ' horas'">24 horas</td>
+												<td>
+													<a th:href="|${course.url}|" href="#" class="btn btn-info btn-icon">
+														<i class="btn-icon-prepend" data-feather="info"></i>
+													</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- partial:../../partials/_footer.html -->
+			<footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between">
+				<p class="text-muted text-center text-md-left">Copyright © 2022 <a href="#" target="_blank">EduFind</a>.
+				Todos los derechos reservados - Equipo 5 Taller Web</p>
+				<p class="text-muted text-center text-md-left mb-0 d-none d-md-block">Desarrollado con <i
+						class="mb-1 text-primary ml-1 icon-small" data-feather="heart"></i></p>
+			</footer>
+			<!-- partial -->
+
+		</div>
+	</div>
+
+	<!-- core:js -->
+	<script src="/vendors/core/core.js"></script>
+	<!-- endinject -->
+	<!-- plugin js for this page -->
+	<script src="/vendors/datatables.net/jquery.dataTables.js"></script>
+	<script src="/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+	
+	<script src="/vendors/sweetalert2/sweetalert2.min.js"></script>
+	<!-- end plugin js for this page -->
+	<!-- inject:js -->
+	<script src="/vendors/feather-icons/feather.min.js"></script>
+	<script src="/js/template.js"></script>
+	<!-- endinject -->
+	<!-- custom js for this page -->
+	<script src="/js/data-table.js"></script>
+	<!-- end custom js for this page -->
+	
+	<script>
+		$('#btnVerCursos').click(function () {
+			$('#welcomePanel').addClass('d-none');
+			$('#tablePanel').removeClass('d-none');
+			$('#tablePanel').addClass('animate__backInUp');			
+		});
+	</script>
+
+	<script th:inline="javascript">	
+		$(function() {
+			var notification = /*[[${notification}]]*/
+			
+			'use strict'
+			
+			if (notification === 'Ocurrió algo inesperado, intente registrarse más tarde.') {
+				Swal.fire({
+				  position: 'center',
+				  icon: 'error',
+				  title: 'Ups...',
+				  text: notification
+				})
+			} 
+			
+		})
+	</script>
+</body>
+
+</html>

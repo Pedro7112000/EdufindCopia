@@ -1,0 +1,21 @@
+#dataTableExample_length, #dataTableExample_filter {
+    display: none;
+}
+
+#dataTableExample_info, #dataTableExample_paginate {
+    margin-top: 2em;
+}
+
+td {
+    overflow-wrap: break-word;
+}
+
+.link-logout {
+	cursor: pointer;
+}
+
+.dt-cell-name {
+	display: block;
+	width: 250px;
+	word-wrap: break-word;
+}
